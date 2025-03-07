@@ -51,7 +51,7 @@ export default function About() {
                 My approach to coaching combines technical expertise with a strong focus on player development. I believe in creating a positive and encouraging environment where players can grow both in their tennis skills and personal confidence.
               </p>
               <p className="text-gray-800">
-                Whether you're a beginner picking up a racquet for the first time or an advanced player looking to refine your game, I tailor my coaching methods to meet your individual needs and goals.
+                Whether you&apos;re a beginner picking up a racquet for the first time or an advanced player looking to refine your game, I tailor my coaching methods to meet your individual needs and goals.
               </p>
             </Card>
 
@@ -60,7 +60,7 @@ export default function About() {
               <ul className="space-y-4 text-gray-800">
                 <li>• Professional tennis coach with extensive experience in player development</li>
                 <li>• Specialized in junior development and adult coaching programs</li>
-                <li>• Proven track record of improving players' technical skills and match performance</li>
+                <li>• Proven track record of improving players&apos; technical skills and match performance</li>
                 <li>• Certified tennis professional with ongoing education in modern coaching techniques</li>
                 <li>• Based at Lynfield Tennis Club, serving the Auckland community</li>
               </ul>
@@ -83,7 +83,7 @@ export default function About() {
             <Card className="p-6">
               <h3 className="text-xl font-bold text-gray-900 mb-4">Adult Coaching</h3>
               <p className="text-gray-800">
-                Tailored sessions for adult players of all levels, whether you're starting fresh or looking to improve your existing game.
+                Tailored sessions for adult players of all levels, whether you&apos;re starting fresh or looking to improve your existing game.
               </p>
             </Card>
             <Card className="p-6">
@@ -102,7 +102,7 @@ export default function About() {
           <div className="flex flex-col items-center space-y-4 text-center max-w-3xl mx-auto">
             <h2 className="text-3xl font-bold text-gray-900">Start Your Tennis Journey Today</h2>
             <p className="text-gray-800 md:text-xl">
-              Whether you're looking to start playing tennis or want to take your game to the next level, I'm here to help you achieve your goals.
+              Whether you&apos;re looking to start playing tennis or want to take your game to the next level, I&apos;m here to help you achieve your goals.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 mt-6">
               <Button
