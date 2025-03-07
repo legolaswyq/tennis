@@ -1,18 +1,18 @@
 export const siteConfig = {
-  name: 'My Next.js App',
-  description: 'A modern web application built with Next.js and TypeScript',
+  name: 'Josh Tennis Training',
+  description: 'Professional tennis coaching services by Josh Mark, offering private lessons, group sessions, and holiday camps',
   mainNav: [
     {
       title: 'Home',
       href: '/',
     },
     {
-      title: 'About',
-      href: '/about',
+      title: 'Services',
+      href: '/services',
     },
     {
-      title: 'Blog',
-      href: '/blog',
+      title: 'Holiday Camps',
+      href: '/camps',
     },
     {
       title: 'Contact',
@@ -20,15 +20,15 @@ export const siteConfig = {
     },
   ],
   links: {
-    github: 'https://github.com/yourusername/my-nextjs-app',
-    docs: '/docs',
+    email: 'Josh@365tennis.co.nz',
+    phone: '021 031 8013',
   },
   metadata: {
     openGraph: {
       type: 'website',
       locale: 'en_US',
-      url: 'https://my-nextjs-app.com',
-      siteName: 'My Next.js App',
+      url: 'https://joshtennis.co.nz',
+      siteName: 'Josh Tennis Training'
     },
     twitter: {
       card: 'summary_large_image',

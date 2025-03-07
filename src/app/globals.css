@@ -3,19 +3,58 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --tennis-green-50: #f0f9f0;
+  --tennis-green-100: #dcf0dc;
+  --tennis-green-200: #bae2ba;
+  --tennis-green-300: #8fcf8f;
+  --tennis-green-400: #5fb75f;
+  --tennis-green-500: #3b9c3b;
+  --tennis-green-600: #2d7b2d;
+  --tennis-green-700: #266226;
+  --tennis-green-800: #214f21;
+  --tennis-green-900: #1c421c;
+  --tennis-green-950: #0f240f;
+}
+
+@layer base {
+  body {
+    @apply bg-tennis-green-50;
+  }
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #0f172a;
+    --foreground: #f1f5f9;
+    --primary: #3b82f6;
+    --primary-hover: #60a5fa;
+    --secondary: #94a3b8;
+    --accent: #fbbf24;
+    --muted: #64748b;
+    --border: #1e293b;
   }
 }
 
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  line-height: 1.6;
+  letter-spacing: -0.011em;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--foreground);
+}
+
+a {
+  color: var(--primary);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--primary-hover);
 }
