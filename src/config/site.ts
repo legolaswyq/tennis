@@ -1,27 +1,39 @@
 export const siteConfig = {
-  name: 'Josh Tennis Training',
-  description: 'Professional tennis coaching services by Josh Mark, offering private lessons, group sessions, and holiday camps',
+  name: '365 Tennis',
+  description: 'Learn tennis in a fun, welcoming and encouraging environment. 365 Tennis - Exceptional coaching, sportsmanship, fitness and fun.',
   mainNav: [
     {
-      title: 'Home',
+      title: 'HOME',
       href: '/',
     },
     {
-      title: 'Services',
+      title: 'ABOUT',
+      href: '/about',
+    },
+    {
+      title: 'LOCATIONS',
+      href: '/locations',
+    },
+    {
+      title: 'PROGRAMS',
+      href: '/programs',
+    },
+    {
+      title: 'SERVICES',
       href: '/services',
     },
     {
-      title: 'Holiday Camps',
-      href: '/camps',
+      title: 'LATEST UPDATES',
+      href: '/updates',
     },
     {
-      title: 'Contact',
+      title: 'CONTACT',
       href: '/contact',
     },
   ],
   links: {
-    email: 'Josh@365tennis.co.nz',
-    phone: '021 031 8013',
+    email: 'coaching@365tennis.co.nz',
+    phone: '022 898 1212',
   },
   metadata: {
     openGraph: {
