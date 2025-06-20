@@ -39,21 +39,7 @@ export const siteConfig = {
     email: 'coaching@365tennis.co.nz',
     phone: '022 898 1212',
   },
-  metadata: {
-    openGraph: {
-      type: 'website',
-      locale: 'en_US',
-      url: 'https://joshtennis.co.nz',
-      siteName: 'Josh Tennis Training'
-    },
-    twitter: {
-      card: 'summary_large_image',
-      site: '@yourusername',
-      creator: '@yourusername',
-    },
-  },
   features: {
-    authentication: true,
     darkMode: true,
     newsletter: true,
     search: true,

@@ -19,27 +19,6 @@ export const metadata: Metadata = {
     'TypeScript',
     'Tailwind CSS',
   ],
-  authors: [
-    {
-      name: 'Your Name',
-      url: 'https://your-website.com',
-    },
-  ],
-  creator: 'Your Name',
-  openGraph: {
-    type: 'website',
-    locale: 'en_US',
-    url: siteConfig.metadata.openGraph.url,
-    title: siteConfig.name,
-    description: siteConfig.description,
-    siteName: siteConfig.metadata.openGraph.siteName,
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: siteConfig.name,
-    description: siteConfig.description,
-    creator: siteConfig.metadata.twitter.creator,
-  },
   icons: {
     icon: '/favicon.ico',
   },
