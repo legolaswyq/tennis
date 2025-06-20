@@ -23,6 +23,10 @@ export const siteConfig = {
       href: '/services',
     },
     {
+      title: 'BOOKING',
+      href: '/booking',
+    },
+    {
       title: 'LATEST UPDATES',
       href: '/updates',
     },

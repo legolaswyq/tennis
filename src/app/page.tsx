@@ -2,11 +2,62 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useEffect } from 'react';
 
 export default function Home() {
-  const [selectedLocation, setSelectedLocation] = useState('');
-  const [selectedType, setSelectedType] = useState('clubs');
+  useEffect(() => {
+    // Load SimplybookWidget script
+    const script1 = document.createElement('script');
+    script1.src = '//widget.simplybook.net/v2/widget/widget.js';
+    script1.type = 'text/javascript';
+    document.head.appendChild(script1);
+
+    script1.onload = () => {
+      const script2 = document.createElement('script');
+      script2.type = 'text/javascript';
+      script2.innerHTML = `
+        var widget = new SimplybookWidget({
+          "widget_type":"iframe",
+          "url":"https://testwalter.simplybook.net",
+          "theme":"default",
+          "theme_settings":{
+            "timeline_hide_unavailable":"1",
+            "hide_past_days":"0",
+            "timeline_show_end_time":"0",
+            "timeline_modern_display":"as_slots",
+            "sb_base_color":"#48b248",
+            "display_item_mode":"block",
+            "booking_nav_bg_color":"#48b248",
+            "body_bg_color":"#f2f2f2",
+            "sb_review_image":"",
+            "dark_font_color":"#474747",
+            "light_font_color":"#f5fcff",
+            "btn_color_1":"#48b248",
+            "sb_company_label_color":"#ffffff",
+            "hide_img_mode":"1",
+            "show_sidebar":"1",
+            "sb_busy":"#c7b3b3",
+            "sb_available":"#d6ebff"
+          },
+          "timeline":"modern",
+          "datepicker":"top_calendar",
+          "is_rtl":false,
+          "app_config":{
+            "clear_session":0,
+            "allow_switch_to_ada":0,
+            "predefined":[]
+          }
+        });
+      `;
+      document.head.appendChild(script2);
+    };
+
+    return () => {
+      // Cleanup scripts on unmount
+      const scripts = document.querySelectorAll('script[src*="simplybook"]');
+      scripts.forEach(script => script.remove());
+    };
+  }, []);
 
   return (
     <div className="min-h-screen">
@@ -18,90 +69,37 @@ export default function Home() {
         {/* Hero content */}
         <div className="relative z-10 flex items-center min-h-screen">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-            <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 items-center">
-              {/* Main content */}
-              <div className="lg:col-span-3">
-                <div className="text-center lg:text-left text-white">
-                  <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6">
-                    WELCOME TO 365 TENNIS
-                  </h1>
-                  <p className="text-xl md:text-2xl mb-8 max-w-3xl">
-                    Learn tennis in a fun, welcoming and encouraging environment.
-                  </p>
-                  <div className="text-lg md:text-xl mb-8 max-w-4xl italic">
-                    <p className="mb-4">
-                      365 Tennis. Auckland & Waikato's largest coaching company.
-                    </p>
-                    <p className="mb-4">
-                      New Zealand owned and operated. Exceptional coaching,
-                    </p>
-                    <p>
-                      sportsmanship, fitness and fun from a team trained in high-performance tennis centres all over the world.
-                    </p>
-                  </div>
-                  <Link
-                    href="/contact"
-                    className="inline-flex items-center px-8 py-4 bg-tennis-green-500 hover:bg-tennis-green-400 text-white font-bold text-lg rounded-lg transition-colors"
-                  >
-                    CONTACT US
-                  </Link>
-                </div>
+            <div className="text-center text-white">
+              <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6">
+                WELCOME TO 365 TENNIS
+              </h1>
+              <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">
+                Learn tennis in a fun, welcoming and encouraging environment.
+              </p>
+              <div className="text-lg md:text-xl mb-8 max-w-4xl mx-auto italic">
+                <p className="mb-4">
+                  365 Tennis. Auckland & Waikato's largest coaching company.
+                </p>
+                <p className="mb-4">
+                  New Zealand owned and operated. Exceptional coaching,
+                </p>
+                <p>
+                  sportsmanship, fitness and fun from a team trained in high-performance tennis centres all over the world.
+                </p>
               </div>
-
-              {/* Sidebar - Free Trial */}
-              <div className="lg:col-span-1">
-                <div className="bg-white rounded-lg shadow-xl p-6 max-w-sm mx-auto">
-                  <h3 className="text-2xl font-bold text-tennis-green-800 mb-4 text-center">
-                    LOVE IT OR IT'S FREE
-                  </h3>
-                  <p className="text-gray-600 text-center mb-6">
-                    Try a group lesson and if you don't love it you don't pay!
-                  </p>
-                  
-                  <div className="mb-4">
-                    <select
-                      value={selectedLocation}
-                      onChange={(e) => setSelectedLocation(e.target.value)}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-tennis-green-500 text-gray-500"
-                    >
-                      <option value="">Select Location</option>
-                      <option value="auckland-central">Auckland Central</option>
-                      <option value="auckland-north">Auckland North</option>
-                      <option value="auckland-south">Auckland South</option>
-                      <option value="hamilton">Hamilton</option>
-                      <option value="tauranga">Tauranga</option>
-                    </select>
-                  </div>
-
-                  <div className="flex items-center space-x-4 mb-6">
-                    <label className="flex items-center">
-                      <input
-                        type="radio"
-                        name="location-type"
-                        value="clubs"
-                        checked={selectedType === 'clubs'}
-                        onChange={(e) => setSelectedType(e.target.value)}
-                        className="mr-2 text-tennis-green-500"
-                      />
-                      <span className="text-gray-700">Clubs</span>
-                    </label>
-                    <label className="flex items-center">
-                      <input
-                        type="radio"
-                        name="location-type"
-                        value="schools"
-                        checked={selectedType === 'schools'}
-                        onChange={(e) => setSelectedType(e.target.value)}
-                        className="mr-2 text-tennis-green-500"
-                      />
-                      <span className="text-gray-700">Schools</span>
-                    </label>
-                  </div>
-
-                  <button className="w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-6 rounded-lg transition-colors">
-                    FIND A CLASS
-                  </button>
-                </div>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Link
+                  href="/booking"
+                  className="inline-flex items-center px-8 py-4 bg-tennis-green-500 hover:bg-tennis-green-400 text-white font-bold text-lg rounded-lg transition-colors"
+                >
+                  BOOK NOW
+                </Link>
+                <Link
+                  href="/contact"
+                  className="inline-flex items-center px-8 py-4 border-2 border-white text-white font-bold text-lg rounded-lg hover:bg-white hover:text-tennis-green-600 transition-colors"
+                >
+                  CONTACT US
+                </Link>
               </div>
             </div>
           </div>
@@ -212,10 +210,10 @@ export default function Home() {
           <p className="text-xl text-tennis-green-100 mb-8">Join thousands of players who have improved their game with 365 Tennis</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
-              href="/contact"
+              href="/booking"
               className="inline-flex items-center px-8 py-4 bg-white text-tennis-green-600 font-bold rounded-lg hover:bg-gray-100 transition-colors"
             >
-              GET STARTED TODAY
+              BOOK NOW
             </Link>
             <Link
               href="/about"
