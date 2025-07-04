@@ -2,10 +2,53 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-
+import { useEffect } from 'react';
 
 export default function Home() {
+  useEffect(() => {
+    // Load SimplybookWidget script
+    const script1 = document.createElement('script');
+    script1.src = '//widget.simplybook.net/v2/widget/widget.js';
+    script1.type = 'text/javascript';
+    document.head.appendChild(script1);
 
+    script1.onload = () => {
+      const script2 = document.createElement('script');
+      script2.type = 'text/javascript';
+      script2.innerHTML = `
+        var widget = new SimplybookWidget({"widget_type":"button","url":"https://testwalter.simplybook.net","theme":"creative","theme_settings":{"timeline_show_end_time":"0","timeline_modern_display":"as_slots","timeline_hide_unavailable":"1","index_page_content_grid":"[{\\"template\\":\\"col_25_50_25\\",\\"items\\":[\\"timetable\\",\\"about-us\\",\\"contacts\\"]}]","hide_past_days":"0","sb_base_color":"#49306b","display_item_mode":"block","booking_nav_bg_color":"#49306b","body_bg_color":"#ffffff","sb_review_image":"","dark_font_color":"#474747","light_font_color":"#ffffff","btn_color_1":"#c98e5a","hide_img_mode":"1","show_sidebar":"1","sb_busy":"#c7b3b3","sb_available":"#d6ebff"},"timeline":"modern","datepicker":"top_calendar","is_rtl":false,"app_config":{"clear_session":0,"allow_switch_to_ada":0,"predefined":[]},"button_title":"Book now","button_background_color":"#49306b","button_text_color":"#ffffff","button_position":"right","button_position_offset":"55%"});
+        window.simplybookWidget = widget;
+      `;
+      document.head.appendChild(script2);
+    };
+
+    return () => {
+      // Cleanup scripts on unmount
+      const scripts = document.querySelectorAll('script[src*="simplybook"]');
+      scripts.forEach(script => script.remove());
+    };
+  }, []);
+
+  const handleBookingClick = () => {
+    // Try to trigger the SimplybookWidget
+    if (typeof window !== 'undefined') {
+      const widget = (window as typeof window & { simplybookWidget?: { openWidget?: () => void; show?: () => void } }).simplybookWidget;
+      if (widget && typeof widget.openWidget === 'function') {
+        widget.openWidget();
+      } else if (widget && typeof widget.show === 'function') {
+        widget.show();
+      } else {
+        // Fallback: try to click the floating button
+        const floatingButton = document.querySelector('.simplybook-widget-button');
+        if (floatingButton) {
+          (floatingButton as HTMLElement).click();
+        } else {
+          // Last resort: redirect to the booking URL directly
+          window.open('https://testwalter.simplybook.net', '_blank');
+        }
+      }
+    }
+  };
 
   return (
     <div className="min-h-screen">
@@ -36,12 +79,12 @@ export default function Home() {
                 </p>
               </div>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link
-                  href="/booking"
+                <button
+                  onClick={handleBookingClick}
                   className="inline-flex items-center px-8 py-4 bg-tennis-green-500 hover:bg-tennis-green-400 text-white font-bold text-lg rounded-lg transition-colors"
                 >
                   BOOK NOW
-                </Link>
+                </button>
                 <Link
                   href="/contact"
                   className="inline-flex items-center px-8 py-4 border-2 border-white text-white font-bold text-lg rounded-lg hover:bg-white hover:text-tennis-green-600 transition-colors"
@@ -157,12 +200,12 @@ export default function Home() {
           <h2 className="text-4xl font-bold text-white mb-4">Ready to Start Your Tennis Journey?</h2>
           <p className="text-xl text-tennis-green-100 mb-8">Join thousands of players who have improved their game with 365 Tennis</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              href="/booking"
+            <button
+              onClick={handleBookingClick}
               className="inline-flex items-center px-8 py-4 bg-white text-tennis-green-600 font-bold rounded-lg hover:bg-gray-100 transition-colors"
             >
               BOOK NOW
-            </Link>
+            </button>
             <Link
               href="/about"
               className="inline-flex items-center px-8 py-4 border-2 border-white text-white font-bold rounded-lg hover:bg-white hover:text-tennis-green-600 transition-colors"
