@@ -18,7 +18,7 @@
 
 @layer base {
   body {
-    @apply bg-tennis-green-50;
+    @apply bg-tennis-green-50 font-sans;
   }
 }
 
@@ -38,7 +38,6 @@
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
   line-height: 1.6;
   letter-spacing: -0.011em;
 }

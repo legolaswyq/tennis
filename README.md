@@ -34,3 +34,23 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+
+
+# Set up Stride
+
+
+
+# Set up SimplyBook.me
+
+1. Fill in account infomation 
+2. Setup provider and services 
+   1. service description 
+   2. price
+   3. Picture
+3. connect payment method Stride
+4. Enable group booking from custom feature
+   1. Manage Provider -> set max clients to be served 
+   2. https://help.simplybook.me/index.php/Group_Bookings_custom_feature
+5. Service Setting 
+   1. Service provider -> choose one service for specify provider 

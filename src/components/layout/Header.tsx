@@ -2,10 +2,27 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { siteConfig } from '@/config/site';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isProgramsDropdownOpen, setIsProgramsDropdownOpen] = useState(false);
+  const pathname = usePathname();
+
+  const isActiveLink = (href: string) => {
+    if (href === '/') {
+      return pathname === '/';
+    }
+    return pathname.startsWith(href);
+  };
+
+  const programsSubmenu = [
+    { title: 'SQUAD COACHING', href: '/programs#squad' },
+    { title: 'PRIVATE COACHING', href: '/programs#private' },
+    { title: 'ADULT COACHING', href: '/programs#adult' },
+    { title: 'HOLIDAY CAMPS', href: '/programs#holiday' },
+  ];
 
   return (
     <header className="relative">
@@ -52,15 +69,69 @@ const Header = () => {
 
             {/* Desktop Navigation */}
             <div className="hidden lg:flex items-center space-x-8">
-              {siteConfig.mainNav.map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className="text-tennis-green-800 hover:text-tennis-green-600 font-medium text-sm uppercase tracking-wide transition-colors"
-                >
-                  {item.title}
-                </Link>
-              ))}
+              {siteConfig.mainNav.map((item) => {
+                if (item.title === 'PROGRAMS') {
+                  return (
+                    <div
+                      key={item.href}
+                      className="relative"
+                      onMouseEnter={() => setIsProgramsDropdownOpen(true)}
+                      onMouseLeave={() => setIsProgramsDropdownOpen(false)}
+                    >
+                      <Link
+                        href={item.href}
+                        className={`font-medium text-sm uppercase tracking-wide transition-all duration-200 relative flex items-center ${
+                          isActiveLink(item.href)
+                            ? 'text-tennis-green-600 font-bold'
+                            : 'text-tennis-green-800 hover:text-tennis-green-600'
+                        }`}
+                      >
+                        {item.title}
+                        <svg className="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                        {isActiveLink(item.href) && (
+                          <div className="absolute -bottom-6 left-0 right-0 h-1 bg-tennis-green-500 rounded-full"></div>
+                        )}
+                      </Link>
+                      
+                      {/* Dropdown Menu */}
+                      {isProgramsDropdownOpen && (
+                        <div className="absolute top-full left-0 mt-2 w-64 bg-white shadow-lg border border-gray-200 rounded-md z-50">
+                          <div className="py-2">
+                            {programsSubmenu.map((subItem) => (
+                              <Link
+                                key={subItem.href}
+                                href={subItem.href}
+                                className="block px-4 py-3 text-sm font-medium text-tennis-green-800 hover:bg-tennis-green-50 hover:text-tennis-green-600 transition-colors"
+                              >
+                                {subItem.title}
+                              </Link>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  );
+                }
+                
+                return (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className={`font-medium text-sm uppercase tracking-wide transition-all duration-200 relative ${
+                      isActiveLink(item.href)
+                        ? 'text-tennis-green-600 font-bold'
+                        : 'text-tennis-green-800 hover:text-tennis-green-600'
+                    }`}
+                  >
+                    {item.title}
+                    {isActiveLink(item.href) && (
+                      <div className="absolute -bottom-6 left-0 right-0 h-1 bg-tennis-green-500 rounded-full"></div>
+                    )}
+                  </Link>
+                );
+              })}
             </div>
 
             {/* Mobile menu button */}
@@ -84,16 +155,52 @@ const Header = () => {
           {isMenuOpen && (
             <div className="lg:hidden py-4 border-t border-tennis-green-200">
               <div className="flex flex-col space-y-4">
-                {siteConfig.mainNav.map((item) => (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    className="text-tennis-green-800 hover:text-tennis-green-600 font-medium text-sm uppercase tracking-wide transition-colors"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    {item.title}
-                  </Link>
-                ))}
+                {siteConfig.mainNav.map((item) => {
+                  if (item.title === 'PROGRAMS') {
+                    return (
+                      <div key={item.href}>
+                        <Link
+                          href={item.href}
+                          className={`font-medium text-sm uppercase tracking-wide transition-colors relative ${
+                            isActiveLink(item.href)
+                              ? 'text-tennis-green-600 font-bold bg-tennis-green-50 px-3 py-2 rounded-md'
+                              : 'text-tennis-green-800 hover:text-tennis-green-600'
+                          }`}
+                          onClick={() => setIsMenuOpen(false)}
+                        >
+                          {item.title}
+                        </Link>
+                        <div className="ml-4 mt-2 space-y-2">
+                          {programsSubmenu.map((subItem) => (
+                            <Link
+                              key={subItem.href}
+                              href={subItem.href}
+                              className="block text-sm font-medium text-tennis-green-700 hover:text-tennis-green-600 transition-colors"
+                              onClick={() => setIsMenuOpen(false)}
+                            >
+                              {subItem.title}
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+                    );
+                  }
+                  
+                  return (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      className={`font-medium text-sm uppercase tracking-wide transition-colors relative ${
+                        isActiveLink(item.href)
+                          ? 'text-tennis-green-600 font-bold bg-tennis-green-50 px-3 py-2 rounded-md'
+                          : 'text-tennis-green-800 hover:text-tennis-green-600'
+                      }`}
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      {item.title}
+                    </Link>
+                  );
+                })}
               </div>
             </div>
           )}
