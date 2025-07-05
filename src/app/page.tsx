@@ -47,52 +47,43 @@ export default function Home() {
     }
   };
 
+  const handleContactClick = () => {
+    window.location.href = '/contact';
+  };
+
   return (
     <div className="min-h-screen">
-      {/* Hero Section */}
-      <div className="relative min-h-screen bg-gradient-to-br from-tennis-green-900 via-tennis-green-800 to-tennis-green-600">
-        {/* Background overlay */}
-        <div className="absolute inset-0 bg-black bg-opacity-30"></div>
-        
-        {/* Hero content */}
-        <div className="relative z-10 flex items-center min-h-screen">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-            <div className="text-center text-white">
-              <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6">
-                WELCOME TO 365 TENNIS
-              </h1>
-              <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">
-                Learn tennis in a fun, welcoming and encouraging environment.
-              </p>
-              <div className="text-lg md:text-xl mb-8 max-w-4xl mx-auto italic">
-                <p className="mb-4">
-                  365 Tennis. Auckland & Waikato's largest coaching company.
-                </p>
-                <p className="mb-4">
-                  New Zealand owned and operated. Exceptional coaching,
-                </p>
-                <p>
-                  sportsmanship, fitness and fun from a team trained in high-performance tennis centres all over the world.
-                </p>
-              </div>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <button
-                  onClick={handleBookingClick}
-                  className="inline-flex items-center px-8 py-4 bg-tennis-green-500 hover:bg-tennis-green-400 text-white font-bold text-lg rounded-lg transition-colors"
-                >
-                  BOOK NOW
-                </button>
-                <Link
-                  href="/contact"
-                  className="inline-flex items-center px-8 py-4 border-2 border-white text-white font-bold text-lg rounded-lg hover:bg-white hover:text-tennis-green-600 transition-colors"
-                >
-                  CONTACT US
-                </Link>
-              </div>
+      {/* Hero Section - Custom Layout */}
+      <section
+        className="relative flex items-center justify-center min-h-[480px] md:min-h-[520px] lg:min-h-[600px] bg-cover bg-center"
+        style={{ backgroundImage: 'url(/services/squad-coaching.png)' }}
+      >
+        <div className="absolute inset-0 bg-black bg-opacity-50" />
+        <div className="relative z-10 flex flex-col md:flex-row items-center justify-between w-full max-w-7xl mx-auto px-4 py-16 gap-8">
+          {/* Left Content */}
+          <div className="flex-1 max-w-xl text-white">
+            <h1 className="text-3xl md:text-5xl font-extrabold mb-4">WELCOME TO 365 TENNIS</h1>
+            <p className="text-lg md:text-2xl mb-4">Learn tennis in a fun, welcoming and encouraging environment.</p>
+            <p className="text-base md:text-lg mb-8 italic font-semibold">
+              365 Tennis. Auckland &amp; Waikato&apos;s largest coaching company,<br />
+              New Zealand owned and operated. Exceptional coaching,<br />
+              sportsmanship, fitness and fun from a team trained in high-performance tennis centres all over the world.
+            </p>
+            <button
+              onClick={handleContactClick}
+              className="bg-tennis-green-500 hover:bg-tennis-green-400 text-white font-bold px-8 py-4 rounded-lg text-lg shadow-lg transition-colors"
+            >
+              CONTACT US
+            </button>
+          </div>
+          {/* Right Card */}
+          <div className="flex-shrink-0 w-full md:w-auto mt-8 md:mt-0">
+            <div className="bg-white bg-opacity-95 rounded-lg shadow-xl px-8 py-8 text-center max-w-xs mx-auto">
+              <div className="text-xl md:text-2xl font-extrabold text-gray-900 mb-2">LOVE IT OR IT&apos;S FREE</div>
             </div>
           </div>
         </div>
-      </div>
+      </section>
 
       {/* Locations Section */}
       <div className="py-16 bg-gray-100">

@@ -11,10 +11,6 @@ export const siteConfig = {
       href: '/about',
     },
     {
-      title: 'LOCATIONS',
-      href: '/locations',
-    },
-    {
       title: 'PROGRAMS',
       href: '/programs',
     },
@@ -29,6 +25,10 @@ export const siteConfig = {
     {
       title: 'LATEST UPDATES',
       href: '/updates',
+    },
+    {
+      title: 'LOCATIONS',
+      href: '/locations',
     },
     {
       title: 'CONTACT',

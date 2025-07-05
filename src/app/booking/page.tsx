@@ -2,6 +2,7 @@
 
 import { useEffect } from 'react';
 import Image from 'next/image';
+import HeroBanner from "@/components/HeroBanner";
 
 export default function BookingPage() {
   useEffect(() => {
@@ -55,10 +56,13 @@ export default function BookingPage() {
     },
   ];
 
-
-
   return (
     <div className="min-h-screen bg-white">
+      <HeroBanner
+        title="Booking"
+        breadcrumb={[{ label: "Home", href: "/" }, { label: "Booking" }]}
+        image="/services/holiday-camps.png"
+      />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="text-center mb-8">
           <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 text-gray-900">

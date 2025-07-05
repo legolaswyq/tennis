@@ -3,53 +3,53 @@
 import React from 'react';
 import { siteConfig } from '@/config/site';
 import Card from '@/components/ui/Card';
+import HeroBanner from "@/components/HeroBanner";
+
+const contactCards = [
+  {
+    icon: (
+      <svg width="32" height="32" fill="none" stroke="#2d225a" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24"><path d="M12 21C12 21 4 13.5 4 8.5C4 5.46243 6.46243 3 9.5 3C11.1569 3 12.5 4.34315 12.5 6C12.5 4.34315 13.8431 3 15.5 3C18.5376 3 21 5.46243 21 8.5C21 13.5 12 21 12 21Z" /></svg>
+    ),
+    title: 'OUR LOCATIONS',
+    content: <a href="/locations" className="text-purple-900 hover:underline">View Our Locations</a>,
+  },
+  {
+    icon: (
+      <svg width="32" height="32" fill="none" stroke="#2d225a" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24"><path d="M22 16.92V19a2 2 0 0 1-2.18 2A19.72 19.72 0 0 1 3 5.18 2 2 0 0 1 5 3h2.09a2 2 0 0 1 2 1.72c.13 1.05.37 2.07.72 3.05a2 2 0 0 1-.45 2.11l-.27.27a16 16 0 0 0 6.29 6.29l.27-.27a2 2 0 0 1 2.11-.45c.98.35 2 .59 3.05.72A2 2 0 0 1 22 16.92z" /></svg>
+    ),
+    title: "LET'S TALK",
+    content: <span>Phone: <a href={`tel:${siteConfig.links.phone}`} className="text-purple-900 hover:underline">{siteConfig.links.phone}</a></span>,
+  },
+  {
+    icon: (
+      <svg width="32" height="32" fill="none" stroke="#2d225a" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24"><path d="M4 4h16v16H4z" /><polyline points="22,6 12,13 2,6" /></svg>
+    ),
+    title: 'EMAIL US',
+    content: <a href={`mailto:${siteConfig.links.email}`} className="text-purple-900 hover:underline">{siteConfig.links.email}</a>,
+  },
+];
 
 export default function Contact() {
   return (
-    <div className="flex flex-col items-center">
-      <section className="w-full py-12 md:py-24 lg:py-32 bg-white">
-        <div className="container px-4 md:px-6 mx-auto">
-          <div className="max-w-4xl mx-auto">
-            <Card className="p-8">
-              <h2 className="text-2xl font-bold text-gray-900 mb-6">Contact Information</h2>
-              <div className="space-y-6 text-gray-800">
-                <p className="flex items-center text-xl">
-                  <span className="font-medium mr-3">Email:</span>
-                  <a href={`mailto:${siteConfig.links.email}`} className="text-blue-600 hover:text-blue-800">
-                    {siteConfig.links.email}
-                  </a>
-                </p>
-                <p className="flex items-center text-xl">
-                  <span className="font-medium mr-3">Phone:</span>
-                  <a href={`tel:${siteConfig.links.phone}`} className="text-blue-600 hover:text-blue-800">
-                    {siteConfig.links.phone}
-                  </a>
-                </p>
-                <div className="pt-6">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-6">Location</h3>
-                  <div className="text-lg space-y-2 mb-6">
-                    <p>Lynfield Tennis Club</p>
-                    <p>Margaret Griffin Park</p>
-                    <p>90 The Avenue</p>
-                    <p>Lynfield, Auckland 1042</p>
-                  </div>
-                  <div className="rounded-lg overflow-hidden shadow-md">
-                    <iframe
-                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3187.5791227653837!2d174.71661091547592!3d-36.92423797992247!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6d0d463e4e7644e9%3A0x4a1662fd36c09b41!2sLynfield%20Tennis%20Club!5e0!3m2!1sen!2snz!4v1629901234567!5m2!1sen!2snz"
-                      width="100%"
-                      height="300"
-                      style={{ border: 0 }}
-                      allowFullScreen
-                      loading="lazy"
-                      referrerPolicy="no-referrer-when-downgrade"
-                    />
-                  </div>
-                </div>
+    <>
+      <HeroBanner
+        title="Contact"
+        breadcrumb={[{ label: "Home", href: "/" }, { label: "Contact" }]}
+        image="/services/private-coaching.png"
+      />
+      <div className="bg-white py-16">
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {contactCards.map((card, idx) => (
+              <div key={idx} className="bg-white rounded-lg shadow-lg p-8 flex flex-col items-center text-center">
+                <div className="mb-4">{card.icon}</div>
+                <div className="text-xl font-bold mb-2 text-gray-900" style={{ letterSpacing: 1 }}>{card.title}</div>
+                <div className="text-lg text-purple-900 font-medium">{card.content}</div>
               </div>
-            </Card>
+            ))}
           </div>
         </div>
-      </section>
-    </div>
+      </div>
+    </>
   );
 }

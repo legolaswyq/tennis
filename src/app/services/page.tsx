@@ -3,6 +3,7 @@
 import React from 'react';
 import Image from 'next/image';
 import Card from '@/components/ui/Card';
+import HeroBanner from "@/components/HeroBanner";
 
 export default function Services() {
   const services = [
@@ -20,68 +21,59 @@ export default function Services() {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Hero Section */}
-      <section className="w-full py-12 md:py-24 lg:py-32 bg-tennis-green-800">
-        <div className="container px-4 md:px-6 mx-auto">
-          <div className="flex flex-col items-center space-y-4 text-center">
-            <div className="space-y-2">
-              <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none text-white">
-                Our Services
-              </h1>
-              <p className="mx-auto max-w-[700px] text-tennis-green-100 md:text-xl">
-                Professional tennis equipment services to keep you playing at your best.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Services Section */}
-      <section className="w-full py-12 md:py-24 lg:py-32">
-        <div className="container px-4 md:px-6 mx-auto">
-          <div className="grid grid-cols-1 gap-12">
-            {services.map((service) => (
-              <Card key={service.title} className="p-8">
-                <div className="flex flex-col md:flex-row gap-8">
-                  <div className="flex-1">
-                    <div className="flex items-center gap-4 mb-6">
-                      <div className="relative w-16 h-16">
+    <>
+      <HeroBanner
+        title="Services"
+        breadcrumb={[{ label: "Home", href: "/" }, { label: "Services" }]}
+        image="/services/racquet-stringing.png"
+      />
+      <div className="min-h-screen bg-gray-50">
+        {/* Services Section */}
+        <section className="w-full py-12 md:py-24 lg:py-32">
+          <div className="container px-4 md:px-6 mx-auto">
+            <div className="grid grid-cols-1 gap-12">
+              {services.map((service) => (
+                <Card key={service.title} className="p-8">
+                  <div className="flex flex-col md:flex-row gap-8">
+                    <div className="flex-1">
+                      <div className="flex items-center gap-4 mb-6">
+                        <div className="relative w-16 h-16">
+                          <Image
+                            src={service.icon}
+                            alt={service.title}
+                            fill
+                            className="object-contain"
+                          />
+                        </div>
+                        <h2 className="text-2xl font-bold text-gray-900">{service.title}</h2>
+                      </div>
+                      <p className="text-gray-800 mb-6">{service.description}</p>
+                      <ul className="space-y-3">
+                        {service.details.map((detail, i) => (
+                          <li key={i} className="flex items-center text-gray-800">
+                            <span className="mr-2">•</span>
+                            {detail}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    <div className="flex-1 flex justify-center items-center">
+                      <div className="relative w-full aspect-[4/3] rounded-lg overflow-hidden shadow-xl">
                         <Image
-                          src={service.icon}
-                          alt={service.title}
+                          src={`/services/${service.title.toLowerCase().replace(/ /g, '-')}.png`}
+                          alt={`${service.title} at 365 Tennis`}
                           fill
-                          className="object-contain"
+                          className="object-cover"
                         />
                       </div>
-                      <h2 className="text-2xl font-bold text-gray-900">{service.title}</h2>
-                    </div>
-                    <p className="text-gray-800 mb-6">{service.description}</p>
-                    <ul className="space-y-3">
-                      {service.details.map((detail, i) => (
-                        <li key={i} className="flex items-center text-gray-800">
-                          <span className="mr-2">•</span>
-                          {detail}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                  <div className="flex-1 flex justify-center items-center">
-                    <div className="relative w-full aspect-[4/3] rounded-lg overflow-hidden shadow-xl">
-                      <Image
-                        src={`/services/${service.title.toLowerCase().replace(/ /g, '-')}.png`}
-                        alt={`${service.title} at 365 Tennis`}
-                        fill
-                        className="object-cover"
-                      />
                     </div>
                   </div>
-                </div>
-              </Card>
-            ))}
+                </Card>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
-    </div>
+        </section>
+      </div>
+    </>
   );
 }
