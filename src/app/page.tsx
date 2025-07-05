@@ -1,6 +1,4 @@
 'use client';
-
-import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect } from 'react';
 
@@ -16,8 +14,7 @@ export default function Home() {
       const script2 = document.createElement('script');
       script2.type = 'text/javascript';
       script2.innerHTML = `
-        var widget = new SimplybookWidget({"widget_type":"button","url":"https://testwalter.simplybook.net","theme":"creative","theme_settings":{"timeline_show_end_time":"0","timeline_modern_display":"as_slots","timeline_hide_unavailable":"1","index_page_content_grid":"[{\\"template\\":\\"col_25_50_25\\",\\"items\\":[\\"timetable\\",\\"about-us\\",\\"contacts\\"]}]","hide_past_days":"0","sb_base_color":"#49306b","display_item_mode":"block","booking_nav_bg_color":"#49306b","body_bg_color":"#ffffff","sb_review_image":"","dark_font_color":"#474747","light_font_color":"#ffffff","btn_color_1":"#c98e5a","hide_img_mode":"1","show_sidebar":"1","sb_busy":"#c7b3b3","sb_available":"#d6ebff"},"timeline":"modern","datepicker":"top_calendar","is_rtl":false,"app_config":{"clear_session":0,"allow_switch_to_ada":0,"predefined":[]},"button_title":"Book now","button_background_color":"#49306b","button_text_color":"#ffffff","button_position":"right","button_position_offset":"55%"});
-        window.simplybookWidget = widget;
+        var widget = new SimplybookWidget({"widget_type":"button","url":"https:\/\/testwalter2.simplybook.net","theme":"simple_beauty_theme","theme_settings":{"sb_base_color":"#dd3649","header_color":"#f2f2f2","timeline_hide_unavailable":"1","hide_past_days":"0","timeline_show_end_time":"0","timeline_modern_display":"as_slots","display_item_mode":"block","body_bg_color":"#f2f2f2","sb_review_image":"","dark_font_color":"#474747","light_font_color":"#ffffff","btn_color_1":"#dd3649","sb_company_label_color":"#ffffff","hide_img_mode":"0","show_sidebar":"1","sb_busy":"#c7b3b3","sb_available":"#e5f2ff"},"timeline":"modern","datepicker":"top_calendar","is_rtl":false,"app_config":{"clear_session":0,"allow_switch_to_ada":0,"predefined":[]},"button_title":"Book now","button_background_color":"#dd3649","button_text_color":"#ffffff","button_position":"right","button_position_offset":"55%"});
       `;
       document.head.appendChild(script2);
     };

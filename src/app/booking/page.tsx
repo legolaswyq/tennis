@@ -15,8 +15,7 @@ export default function BookingPage() {
       const script2 = document.createElement('script');
       script2.type = 'text/javascript';
       script2.innerHTML = `
-        var widget = new SimplybookWidget({"widget_type":"iframe","url":"https://testwalter2.simplybook.net","theme":"simple_beauty_theme","theme_settings":{"sb_base_color":"#dd3649","header_color":"#f2f2f2","timeline_hide_unavailable":"1","hide_past_days":"0","timeline_show_end_time":"0","timeline_modern_display":"as_slots","display_item_mode":"block","body_bg_color":"#f2f2f2","sb_review_image":"","dark_font_color":"#474747","light_font_color":"#ffffff","btn_color_1":"#dd3649","sb_company_label_color":"#ffffff","hide_img_mode":"1","show_sidebar":"1","sb_busy":"#c7b3b3","sb_available":"#e5f2ff"},"timeline":"modern","datepicker":"top_calendar","is_rtl":false,"app_config":{"clear_session":0,"allow_switch_to_ada":0,"predefined":[]}});
-        window.simplybookWidget = widget;
+        var widget = new SimplybookWidget({"widget_type":"button","url":"https:\/\/testwalter2.simplybook.net","theme":"simple_beauty_theme","theme_settings":{"sb_base_color":"#dd3649","header_color":"#f2f2f2","timeline_hide_unavailable":"1","hide_past_days":"0","timeline_show_end_time":"0","timeline_modern_display":"as_slots","display_item_mode":"block","body_bg_color":"#f2f2f2","sb_review_image":"","dark_font_color":"#474747","light_font_color":"#ffffff","btn_color_1":"#dd3649","sb_company_label_color":"#ffffff","hide_img_mode":"0","show_sidebar":"1","sb_busy":"#c7b3b3","sb_available":"#e5f2ff"},"timeline":"modern","datepicker":"top_calendar","is_rtl":false,"app_config":{"clear_session":0,"allow_switch_to_ada":0,"predefined":[]},"button_title":"Book now","button_background_color":"#dd3649","button_text_color":"#ffffff","button_position":"right","button_position_offset":"55%"});
       `;
       document.head.appendChild(script2);
     };
@@ -90,10 +89,29 @@ export default function BookingPage() {
           ))}
         </div>
 
-        <div className="text-center">
-          <p className="text-gray-600 text-lg mb-4">
-            The booking widget will load below. Please wait a moment for it to appear.
-          </p>
+        <div className="text-center mb-8">
+          <button
+            onClick={() => {
+              if (typeof window !== 'undefined') {
+                const widget = (window as typeof window & { simplybookWidget?: { openWidget?: () => void; show?: () => void } }).simplybookWidget;
+                if (widget && typeof widget.openWidget === 'function') {
+                  widget.openWidget();
+                } else if (widget && typeof widget.show === 'function') {
+                  widget.show();
+                } else {
+                  const floatingButton = document.querySelector('.simplybook-widget-button');
+                  if (floatingButton) {
+                    (floatingButton as HTMLElement).click();
+                  } else {
+                    window.open('https://testwalter.simplybook.net', '_blank');
+                  }
+                }
+              }
+            }}
+            className="inline-flex items-center px-8 py-4 bg-tennis-green-500 hover:bg-tennis-green-400 text-white font-bold text-lg rounded-lg transition-colors"
+          >
+            BOOK NOW
+          </button>
         </div>
       </div>
     </div>

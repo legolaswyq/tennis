@@ -2,9 +2,7 @@
 
 import React from 'react';
 import Image from 'next/image';
-import Button from '@/components/ui/Button';
 import Card from '@/components/ui/Card';
-import { siteConfig } from '@/config/site';
 
 export default function Services() {
   const services = [
@@ -43,7 +41,7 @@ export default function Services() {
       <section className="w-full py-12 md:py-24 lg:py-32">
         <div className="container px-4 md:px-6 mx-auto">
           <div className="grid grid-cols-1 gap-12">
-            {services.map((service, index) => (
+            {services.map((service) => (
               <Card key={service.title} className="p-8">
                 <div className="flex flex-col md:flex-row gap-8">
                   <div className="flex-1">
