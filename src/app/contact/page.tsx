@@ -1,9 +1,8 @@
 'use client';
 
 import React from 'react';
-import { siteConfig } from '@/config/site';
-import Card from '@/components/ui/Card';
 import HeroBanner from "@/components/HeroBanner";
+import { siteConfig } from '@/config/site';
 
 const contactCards = [
   {
